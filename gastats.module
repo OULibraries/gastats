@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @param $view
+ * implements hook_views_pre_render
+ *
+ * grabs the date of barchart and returns just the hour
+ */
+function gastats_views_pre_render(&$view) {
+  if ($view->name !== 'ga_reports' || $view->current_display !== 'attachment_4') return;
+  foreach ($view->field as $key => $result) {
+
+    if ($result->field_alias == 'dateHour') {
+      foreach ($result->view->result as $da) {
+
+        $tempDate = date_create_from_format('YmdH', $da->dateHour);
+        $tempDate = $tempDate->format('g a');
+        $da->dateHour = $tempDate;
+      }
+    }
+  }
+}

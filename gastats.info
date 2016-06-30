@@ -1,0 +1,7 @@
+name = ga stats
+description = useful functions to coincide with google analytics data and charts
+
+core = 7.x
+package = Drupal 7 Development
+
+files[] = gastats.module
